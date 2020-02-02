@@ -22,12 +22,15 @@ public class Board {
     @Override
     public String toString() {
         StringBuilder s = new StringBuilder();
+        s.append("---------\n");
         for (TicTacToeSymbol[] ticTacToeSymbols : field) {
+            s.append("| ");
             for (TicTacToeSymbol ticTacToeSymbol : ticTacToeSymbols) {
-                s.append(ticTacToeSymbol);
+                s.append(ticTacToeSymbol.label + " ");
             }
-            s.append("\n");
+            s.append("|\n");
         }
+        s.append("---------\n");
         return s.toString().trim();
     }
 
