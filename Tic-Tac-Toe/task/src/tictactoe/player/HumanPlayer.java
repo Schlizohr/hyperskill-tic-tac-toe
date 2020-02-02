@@ -15,7 +15,7 @@ public class HumanPlayer extends Player {
 
     @Override
     public Point choosePosition() {
-        System.out.print("Enter the coordinates: ");
+        System.out.print("Enter the coordinates " + getIdentifier() + ": ");
         String[] s = scanner.nextLine().trim().split(" ");
         Point point = new Point(-1, -1);
         try {

@@ -25,12 +25,14 @@ public class GameMaster {
     }
 
     public void runGame() {
-//        while (currentGameState == GameState.UNFINISHED && board.hasFreeCells()) {
-        playerAction();
-//            evalGameState();
+        while (currentGameState == GameState.UNFINISHED && board.hasFreeCells()) {
+            System.out.println(board);
+            playerAction();
+            evalGameState();
+            playerManagement.nextPlayer();
+        }
         System.out.println(board);
-//        }
-//        System.out.println(currentGameState.label);
+        System.out.println(currentGameState.label);
     }
 
     private void playerAction() {
@@ -41,7 +43,6 @@ public class GameMaster {
             System.out.println("This cell is occupied! Choose another one!");
             playerAction();
         }
-        playerManagement.nextPlayer();
     }
 
     private void evalGameState() {

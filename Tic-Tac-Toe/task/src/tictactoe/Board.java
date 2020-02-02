@@ -9,6 +9,7 @@ public class Board {
         field = new TicTacToeSymbol[3][3];
         xSize = 3;
         ySize = 3;
+        fillBoard();
     }
 
     public boolean isPositionEmpty(int xPos, int yPos) {
@@ -20,6 +21,15 @@ public class Board {
             field[xPos][yPos] = ticTacToeSymbol;
         } else {
             throw new AlreadyPlacedException("Position (" + xPos + "," + yPos + ") is not empty");
+        }
+    }
+
+
+    private void fillBoard() throws AlreadyPlacedException {
+        for (int x = 0; x < xSize; x++) {
+            for (int y = 0; y < ySize; y++) {
+                placeValue(x, y, TicTacToeSymbol.valueOf("U"));
+            }
         }
     }
 
