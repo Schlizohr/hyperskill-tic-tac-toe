@@ -1,5 +1,8 @@
 package tictactoe;
 
+import tictactoe.player.PlayerManagement;
+
+import java.awt.*;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
@@ -8,21 +11,43 @@ public class GameMaster {
 
     private Board board;
     private GameState currentGameState = GameState.UNFINISHED;
+    private PlayerManagement playerManagement;
 
     public GameMaster() {
         board = new Board();
+        playerManagement = new PlayerManagement();
     }
 
+
     public GameMaster(Board board) {
+        playerManagement = new PlayerManagement();
         this.board = board;
-        evalGameState();
+    }
+
+    public void runGame() {
+//        while (currentGameState == GameState.UNFINISHED && board.hasFreeCells()) {
+        playerAction();
+//            evalGameState();
+        System.out.println(board);
+//        }
+//        System.out.println(currentGameState.label);
+    }
+
+    private void playerAction() {
+        Point point = playerManagement.currentPlayersTurn();
+        if (board.isPositionEmpty(point.x, point.y))
+            board.placeValue(point.x, point.y, playerManagement.getCurrentPlayer().getIdentifier());
+        else {
+            System.out.println("This cell is occupied! Choose another one!");
+            playerAction();
+        }
+        playerManagement.nextPlayer();
     }
 
     private void evalGameState() {
         evalWinner();
         evalImpossible();
         evalDraw();
-        System.out.println(currentGameState.label);
     }
 
     private void evalWinner() {

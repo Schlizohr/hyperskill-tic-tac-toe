@@ -11,8 +11,12 @@ public class Board {
         ySize = 3;
     }
 
+    public boolean isPositionEmpty(int xPos, int yPos) {
+        return field[xPos][yPos] == null || field[xPos][yPos] == TicTacToeSymbol.U;
+    }
+
     public void placeValue(int xPos, int yPos, TicTacToeSymbol ticTacToeSymbol) throws AlreadyPlacedException {
-        if (field[xPos][yPos] == null) {
+        if (isPositionEmpty(xPos, yPos)) {
             field[xPos][yPos] = ticTacToeSymbol;
         } else {
             throw new AlreadyPlacedException("Position (" + xPos + "," + yPos + ") is not empty");
@@ -32,6 +36,15 @@ public class Board {
         }
         s.append("---------\n");
         return s.toString().trim();
+    }
+
+    public boolean hasFreeCells() {
+        for (TicTacToeSymbol[] ticTacToeSymbols : field) {
+            for (TicTacToeSymbol ticTacToeSymbol : ticTacToeSymbols) {
+                if (ticTacToeSymbol == null || ticTacToeSymbol == TicTacToeSymbol.U) return true;
+            }
+        }
+        return false;
     }
 
     public TicTacToeSymbol[][] getField() {

@@ -8,6 +8,7 @@ public class Main {
         fillBoard(board);
         System.out.println(board);
         GameMaster gameMaster = new GameMaster(board);
+        gameMaster.runGame();
     }
 
     private static void fillBoard(Board board) throws AlreadyPlacedException {
